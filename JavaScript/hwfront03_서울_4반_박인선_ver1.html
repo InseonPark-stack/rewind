@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>3번 과제_1</title>
+</head>
+<body>
+	<header> 대박을 기원합니다~~ </header>
+	<article style = "margin : 10px" id="printbox">
+	
+	</article>
+	<script type="text/javascript"> // 자바스크립트 선언
+		var lotto = lottoNum();
+		function lottoNum() {
+			let lotto = [];
+			let i = 0;
+			while(i < 6){
+				let n = Math.floor(Math.random() * 45) + 1;
+				if(notSame(n)){
+					lotto.push(n);
+					i++;
+				}
+			}	
+			function notSame (n){
+				return lotto.every((e) => n !== e);
+			}
+			return lotto;
+		}
+		console.log(lotto); // 콘솔에 출력하기	
+		
+		var pb = document.getElementById("printbox"); 
+		pb.style.backgroundColor = "cyan";		
+		pb.style.width = "500px";
+		pb.style.height = "200px";		
+		
+		for (let l of lotto) {
+			pb.appendChild(document.createTextNode(l + " "));
+		}
+	</script>
+</body>
+</html>

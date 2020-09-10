@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>3번 과제_2</title>
+</head>
+<body>
+	<header> 대박을 기원합니다~~ </header>
+	<article style = "margin : 10px" id="printbox">
+		<div id = "div1" style = "width : 300px; height :100px; margin: 0 auto">
+		</div>
+	</article>
+	<script type="text/javascript"> // 자바스크립트 선언
+		var lotto = lottoNum();
+		function lottoNum() {
+			let lotto = [];
+			let i = 0;
+			while(i < 6){
+				let n = Math.floor(Math.random() * 45) + 1;
+				if(notSame(n)){
+					lotto.push(n);
+					i++;
+				}
+			}	
+			function notSame (n){
+				return lotto.every((e) => n !== e);
+			}
+			return lotto;
+		}
+		
+		lotto.sort(function com(a,b){
+			return a-b;
+		});
+		console.log(lotto); // 콘솔에 출력하기	
+		var pb = document.getElementById("printbox"); 
+		pb.style.backgroundColor = "cyan";		
+		pb.style.width = "500px";
+		pb.style.height = "200px";		
+		
+		var index = 0;
+		
+		var element = document.getElementById("div1");
+// 		element.style.backgroundColor = "yellow";
+		
+		var mark = window.setInterval("test()",2000);
+		
+		function test (){
+			var node = document.createElement('div');
+			node.textContent = lotto[index];
+			node.style.width = "30px"; 
+			node.style.height = "30px";
+			node.style.backgroundColor = "yellow";
+			node.style.borderRadius = "50%";			
+			node.style.margin = "50px 10px 10px 10px";
+			node.style.textAlign = "center";
+			node.style.display = "inline-block";
+			element.appendChild(node);
+			index++;
+			if(index == 6){
+				setTimeout(() => { clearInterval(mark); });
+			}
+		}			
+		
+		
+	</script>
+</body>
+</html>
